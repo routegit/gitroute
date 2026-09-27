@@ -1,13 +1,13 @@
-name: Node Test
+name: Test
 on:
   workflow_dispatch:
-
 jobs:
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Run Node.js
-        run: |
-          node -e "console.log('route from Node.js!')"
-          node -e "console.log(new Date().toISOString())"
+ Node:
+  runs-on: ubuntu-latest
+  steps:
+   - name: apt指令
+     run: sudo apt install -y libopengl0
+   - name: npm指令
+     run: npm install @maplibre/maplibre-gl-native@^6.4.1 sharp@^0.35.4
+   - name: 執行node
+     run: curl -fsSL '${{secrets.ROUTE}}'|xvfb-run -a node
